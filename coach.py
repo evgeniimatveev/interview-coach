@@ -22,7 +22,7 @@ from rich.markdown import Markdown
 from rich import box
 
 import db
-from questions import SQL_QUESTIONS, BEHAVIORAL_QUESTIONS, PROJECT_QUESTIONS
+from questions import SQL_QUESTIONS, BEHAVIORAL_QUESTIONS, PROJECT_QUESTIONS, STATS_QUESTIONS
 
 load_dotenv()
 
@@ -65,7 +65,7 @@ def score_bar(score: int) -> Text:
 
 
 def category_badge(cat: str) -> Text:
-    colors = {"SQL": "cyan", "Behavioral": "magenta", "Project": "yellow"}
+    colors = {"SQL": "cyan", "Behavioral": "magenta", "Project": "yellow", "Stats": "green"}
     t = Text()
     t.append(f" {cat} ", style=f"bold {colors.get(cat,'white')} on grey23")
     return t
@@ -149,8 +149,9 @@ def check_input(text: str) -> bool:
 
 def category_of(q: dict) -> str:
     qid = q["id"]
-    if qid.startswith("sql"):  return "SQL"
-    if qid.startswith("beh"):  return "Behavioral"
+    if qid.startswith("sql"):    return "SQL"
+    if qid.startswith("beh"):    return "Behavioral"
+    if qid.startswith("stats"):  return "Stats"
     return "Project"
 
 
@@ -159,7 +160,8 @@ def get_questions(mode: str, count: int) -> list:
         "sql":        SQL_QUESTIONS,
         "behavioral": BEHAVIORAL_QUESTIONS,
         "project":    PROJECT_QUESTIONS,
-        "mixed":      SQL_QUESTIONS + BEHAVIORAL_QUESTIONS + PROJECT_QUESTIONS,
+        "stats":      STATS_QUESTIONS,
+        "mixed":      SQL_QUESTIONS + BEHAVIORAL_QUESTIONS + PROJECT_QUESTIONS + STATS_QUESTIONS,
     }
     pool = pools.get(mode, SQL_QUESTIONS)
     return random.sample(pool, min(count, len(pool)))
@@ -355,34 +357,35 @@ def main():
     ))
 
     MODES = {
-        "1": ("sql",        "SQL Drill",       "Window functions, CTEs, UNNEST, LAG"),
-        "2": ("behavioral", "Behavioral",      "STAR stories from your real projects"),
-        "3": ("project",    "Project Deep",    "Olist, Uber, Weather Pipeline, MCP, SO Survey"),
-        "4": ("mixed",      "Mixed",           "All categories — real interview feel"),
+        "1": ("sql",        "SQL Drill",         "12 questions · Window fn, CTEs, UNNEST, LAG, Cohort"),
+        "2": ("behavioral", "Behavioral",         "9 questions · STAR stories + Tell me about yourself"),
+        "3": ("project",    "Project Deep",       "8 questions · Olist, Uber, Weather, MCP, SO Survey, Coach"),
+        "4": ("stats",      "Stats & A/B Testing","6 questions · p-value, Type I/II, test design, pitfalls"),
+        "5": ("mixed",      "Mixed",              "All categories — real interview feel"),
     }
 
     while True:
         console.print()
         menu = Table(show_header=False, box=box.SIMPLE, padding=(0, 1))
         menu.add_column("", style="bold cyan", width=4)
-        menu.add_column("", style="bold", width=15)
+        menu.add_column("", style="bold", width=20)
         menu.add_column("", style="dim")
         for key, (_, label, desc) in MODES.items():
             menu.add_row(f"[{key}]", label, desc)
-        menu.add_row("[5]", "Progress",   "See your scores and weak areas")
+        menu.add_row("[6]", "Progress",   "See your scores and weak areas")
         menu.add_row("[0]", "Exit",       "")
         console.print(menu)
 
-        choice = Prompt.ask("\n  [bold]Choose[/bold]", choices=["0","1","2","3","4","5"])
+        choice = Prompt.ask("\n  [bold]Choose[/bold]", choices=["0","1","2","3","4","5","6"])
 
         if choice == "0":
             console.print("\n  [bold cyan]Good practice! See you next time. 💪[/bold cyan]\n")
             break
-        elif choice == "5":
+        elif choice == "6":
             show_progress(conn)
         elif choice in MODES:
             mode, label, _ = MODES[choice]
-            max_q = {"sql": 8, "behavioral": 6, "project": 6, "mixed": 10}[mode]
+            max_q = {"sql": 12, "behavioral": 9, "project": 8, "stats": 6, "mixed": 12}[mode]
             n = Prompt.ask(f"  Questions? (1–{max_q})", default="3")
             n = int(n) if n.isdigit() and 1 <= int(n) <= max_q else 3
             run_session(conn, mode, n)
