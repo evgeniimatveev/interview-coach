@@ -41,10 +41,11 @@ Practice SQL, behavioral, and project-deep questions — Claude evaluates each a
 
 | Mode | Questions | Focus |
 |------|-----------|-------|
-| SQL Drill | 8 | Window functions · CTEs · UNNEST · LAG · Anti-join |
-| Behavioral | 6 | STAR stories from real portfolio projects |
-| Project Deep | 6 | Olist · Uber · Weather Pipeline · MCP Agent · SO Survey |
-| Mixed | 10 | Full interview simulation |
+| SQL Drill | 12 | Window functions · CTEs · UNNEST · LAG · Cohort · Dedup · WHERE vs HAVING |
+| Behavioral | 9 | STAR stories · Tell me about yourself · Weakness · 5-year goal |
+| Project Deep | 8 | Olist · Uber · Weather Pipeline · MCP Agent · SO Survey · HR BI · Interview Coach |
+| Stats & A/B Testing | 6 | Mean vs Median · p-value · Type I/II errors · A/B test design · Pitfalls |
+| Mixed | 12 | All categories — real interview simulation |
 
 ---
 
