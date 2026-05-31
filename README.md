@@ -89,6 +89,19 @@ Practice SQL, behavioral, and project-deep questions — Claude evaluates each a
 
 </details>
 
+<details>
+<summary>📝 Recent Answers & Claude Feedback</summary>
+
+*Each answer is scored 1–10 with specific, actionable feedback from Claude Sonnet.*
+
+![Recent Answers & Feedback — part 1](assets/09_feedback_1.png)
+
+![Recent Answers & Feedback — part 2](assets/10_feedback_2.png)
+
+![Recent Answers & Feedback — part 3](assets/11_feedback_3.png)
+
+</details>
+
 ---
 
 ## Features
