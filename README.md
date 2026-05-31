@@ -47,7 +47,7 @@ streamlit run dashboard.py
 
 ## Live demo
 
-[HF Spaces →](https://huggingface.co/spaces/evgenii-matveev/interview-coach) — seeded with 6 demo sessions showing a realistic 3-week improvement arc.  
+[HF Spaces →](https://huggingface.co/spaces/evgeniimatveevusa/interview-coach) — seeded with 6 demo sessions showing a realistic 3-week improvement arc.  
 *CLI requires local setup with your own Anthropic API key.*
 
 ## Features
