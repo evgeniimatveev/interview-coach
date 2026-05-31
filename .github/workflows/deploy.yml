@@ -34,7 +34,7 @@ jobs:
             echo '---'
             echo 'title: Data Interview Coach'
             echo 'emoji: 🎓'
-            echo 'colorFrom: teal'
+            echo 'colorFrom: green'
             echo 'colorTo: blue'
             echo 'sdk: docker'
             echo 'app_port: 8501'
