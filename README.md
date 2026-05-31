@@ -62,9 +62,7 @@ Practice SQL, behavioral, and project-deep questions — Claude evaluates each a
 <details>
 <summary>📈 Score Analytics</summary>
 
-![Score Trend Over Time](assets/03_score_trend.png)
-
-![Score by Category](assets/04_score_category.png)
+![Score Trend Over Time + Score by Category](assets/03_score_analytics.png)
 
 </details>
 
